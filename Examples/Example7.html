@@ -1,0 +1,14 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<body>
+  <h1>Test File</h1>
+  <script type="text/javascript" src="Example6.js"></script>
+  <form>
+    Please input a number:<br />
+    <input type="number" id="number" />
+    <input type="submit" value="Submit" onclick="document.write("result == " + SquareVal(squared))"/>
+  </form>
+  <script>
+  SquareVal = Module.cwrap('SquareVal', 'number', ['number']);
+  var squared = document.getElementById('number').value;
+  </script>
+</body>
