@@ -5,10 +5,14 @@
   <form>
     Please input a number:<br />
     <input type="number" id="number" />
-    <input type="submit" value="Submit" onclick="document.write("result == " + SquareVal(squared))"/>
+    <button onclick ="returnSquareVal()">Try it</button>
   </form>
   <script>
-  SquareVal = Module.cwrap('SquareVal', 'number', ['number']);
-  var squared = document.getElementById('number').value;
+  function returnSquareVal(){
+    var input = document.getElementById('number').value;
+    SquareVal = Module.cwrap('SquareVal', 'number', ['number']);
+    var output = SquareVal(input);
+    document.write("result == " + output);
+  }
   </script>
 </body>
