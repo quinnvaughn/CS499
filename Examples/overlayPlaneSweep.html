@@ -3,9 +3,41 @@
 <head>
   <title>title</title>
   <meta name="viewport" content="width device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body>
-  <input type="file" id="input"/>
+  <p>
+    Please upload the first file.
+  </p>
+  <input type="file" accept='text/plain/' onchange = 'openFile(event)' id="input1"/>
+  <br />
+  <br />
+  <p>
+    Please upload the second file.
+  </p>
+  <input type="file" accept = 'text/plain' onchange = 'openFile(event)' id="input2"/>
 </body>
+<script>
+  var openFile = function(event) {
+    var input = event.target;
+    var reader = new FileReader();
+    var vector = []
+    reader.onload = function() {
+      var text = reader.result;
+      var lines = text.split(/[\r\n]+/g);
+      for (var i = 0; i < lines.length; i++){
+        var line = lines[i].split(' ');
+        vector[i] = [
+          parseInt(line[0]),
+          parseInt(line[1]),
+          parseInt(line[2]),
+          parseInt(line[3]),
+          parseInt(line[4]),
+          parseInt(line[5])
+        ];
+      }
+      console.log(vector);
+    }
+    reader.readAsText(input.files[0]);
+  };
+</script>
 </html>
